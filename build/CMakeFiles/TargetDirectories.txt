@@ -1,0 +1,3 @@
+/home/world/project/build/CMakeFiles/yestodo.dir
+/home/world/project/build/CMakeFiles/edit_cache.dir
+/home/world/project/build/CMakeFiles/rebuild_cache.dir
