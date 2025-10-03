@@ -224,14 +224,11 @@ PROJECT_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 PROJECT_SOURCE_DIR:STATIC=/home/world/project
 
-//Value Computed by CMake
-Project_BINARY_DIR:STATIC=/home/world/project/build
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2
 
-//Value Computed by CMake
-Project_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/home/world/project
+//The directory containing a CMake configuration file for SDL2_ttf.
+SDL2_ttf_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2_ttf
 
 
 ########################

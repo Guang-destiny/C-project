@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/yestodo.dir/src/main.cpp.o CMakeFiles/yestodo.dir/src/map.cpp.o CMakeFiles/yestodo.dir/src/character.cpp.o -o yestodo 
+/usr/bin/c++ CMakeFiles/yestodo.dir/src/main.cpp.o CMakeFiles/yestodo.dir/src/map.cpp.o CMakeFiles/yestodo.dir/src/character.cpp.o CMakeFiles/yestodo.dir/src/window.cpp.o -o yestodo  /usr/lib/x86_64-linux-gnu/libSDL2.so /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so 

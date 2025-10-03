@@ -4,13 +4,13 @@
 class character
 {
 private:
-	int x;
-	int y;
+	int x=9;
+	int y=14;
 public:
 	character();
 	void setPosition(char key);
-	char getpts_x();
-	char getpts_y();
+	int getpts_x();
+	int getpts_y();
 };
 
 #endif 

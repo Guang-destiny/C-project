@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/yestodo.dir/src/main.cpp.o.d"
   "CMakeFiles/yestodo.dir/src/map.cpp.o"
   "CMakeFiles/yestodo.dir/src/map.cpp.o.d"
+  "CMakeFiles/yestodo.dir/src/window.cpp.o"
+  "CMakeFiles/yestodo.dir/src/window.cpp.o.d"
   "yestodo"
   "yestodo.pdb"
 )

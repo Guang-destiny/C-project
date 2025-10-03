@@ -1,6 +1,6 @@
-CMakeFiles/yestodo.dir/src/main.cpp.o: /home/world/project/src/main.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
- /usr/include/c++/13/bits/requires_hosted.h \
+CMakeFiles/yestodo.dir/src/window.cpp.o: \
+ /home/world/project/src/window.cpp /usr/include/stdc-predef.h \
+ /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -149,8 +149,7 @@ CMakeFiles/yestodo.dir/src/main.cpp.o: /home/world/project/src/main.cpp \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/world/project/src/../include/map.hpp \
- /home/world/project/src/../include/character.hpp /usr/include/SDL2/SDL.h \
+ /home/world/project/src/../include/window.hpp /usr/include/SDL2/SDL.h \
  /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
  /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
@@ -301,4 +300,4 @@ CMakeFiles/yestodo.dir/src/main.cpp.o: /home/world/project/src/main.cpp \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_ttf.h \
- /usr/include/SDL2/SDL.h /home/world/project/src/../include/window.hpp
+ /usr/include/SDL2/SDL.h

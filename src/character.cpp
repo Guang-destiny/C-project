@@ -27,11 +27,11 @@ void character::setPosition(char key)
 		break;
 	}
 }
-char character::getpts_x()
+int character::getpts_x()
 {
 	return x;
 }
-char character::getpts_y()
+int character::getpts_y()
 {
 	return y;
 }
