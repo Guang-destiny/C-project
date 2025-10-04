@@ -9,6 +9,8 @@ CMakeFiles/yestodo.dir/src/character.cpp.o: /home/world/project/src/character.cp
 CMakeFiles/yestodo.dir/src/main.cpp.o: /home/world/project/src/main.cpp \
   /home/world/project/include/character.hpp \
   /home/world/project/include/map.hpp \
+  /home/world/project/include/character.hpp \
+  /home/world/project/include/map.hpp \
   /home/world/project/include/window.hpp \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \
@@ -382,6 +384,10 @@ CMakeFiles/yestodo.dir/src/map.cpp.o: /home/world/project/src/map.cpp \
   /usr/include/stdc-predef.h
 
 CMakeFiles/yestodo.dir/src/window.cpp.o: /home/world/project/src/window.cpp \
+  /home/world/project/include/character.hpp \
+  /home/world/project/include/map.hpp \
+  /home/world/project/include/character.hpp \
+  /home/world/project/include/map.hpp \
   /home/world/project/include/window.hpp \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_assert.h \

@@ -7,118 +7,191 @@
 using namespace std;
 
 
+
 enum class GameState{
-    Menu,Game
+    Menu,Game1,Game2,End
 };
 
-int main() {
 
+int main() {
     int a=0;
-	map myMap;
+	map myMap,mapRST;
 	character myCharacter;
     Window window;
-    
-    bool is_running = true;  // 控制循环的开关（true=继续运行，false=退出）
-    SDL_Event event;         // 存储SDL事件（如鼠标点击、窗口关闭）
-    cout<<"人物坐标为("<<myCharacter.getpts_x()<<","<<myCharacter.getpts_y()<<endl;
 
-    myMap.MapUpdate(myCharacter.getpts_x(),myCharacter.getpts_y());
+    //使用状态机，设置初始状态
+    GameState currestate=GameState::Menu;
+
+    bool is_running = true;  
+    SDL_Event event;         
+
+    //判断是否胜利
+    bool victory=false;
+
+   
     while (is_running) 
     {
-        
-        // 遍历所有待处理的事件（如“点击窗口关闭按钮”会产生SDL_QUIT事件）
-        while (SDL_PollEvent(&event)) 
+        switch(currestate)
         {
-            // 判断事件类型：如果是“窗口关闭”事件
-            if (event.type == SDL_QUIT) 
-            {
-                is_running = false;  // 设为false，退出循环
-                std::cout << "收到窗口关闭指令，准备退出..." << std::endl;
-            }
-       
-            if (event.type == SDL_KEYDOWN) 
-            {   // 有按键被按下
-                // event.key.keysym.sym 表示具体哪个键
-                switch (event.key.keysym.sym) 
+            case GameState::Menu:
+                window.drawMenu();
+                while(SDL_PollEvent(&event))
                 {
-                    case SDLK_w:  // W键
-                        cout << "W键被按下" << endl;
-                        myCharacter.setPosition('w');
-                        
-                        break;
-                    case SDLK_s:  // S键
-                        cout << "S键被按下" << endl;
-                        myCharacter.setPosition('s');
-                        break;
-                    case SDLK_a:  // A键
-                        cout << "A键被按下" << endl;
-                        myCharacter.setPosition('a');
-                        break;
-                    case SDLK_d:  // D键
-                        cout << "D键被按下" << endl;
-                        myCharacter.setPosition('d');
-                        break;
-                    case SDLK_ESCAPE:  // ESC键
-                        cout << "ESC键被按下（可用于暂停游戏）" << endl;
-                        break;
+                    if (event.type == SDL_QUIT) 
+                    {
+                        is_running = false;  
+                        cout << "收到窗口关闭指令，准备退出..." << endl;
+                    }
+                    //状态变换，移动至下一状态
+                    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) 
+                    {
+                        if((event.button.x >= 300) && (event.button.x <= 300 + 200) && (event.button.y >= 250) && (event.button.y <= 250 + 60))
+                            currestate=GameState::Game1;
+                        else if((event.button.x >= 300) && (event.button.x <= 300 + 200) && (event.button.y >= 350) && (event.button.y <= 350 + 60))
+                            currestate=GameState::Game2;
+                    }
                 }
-            } 
-        }
-        
-        window.clearWindow();
-
-        // ② 遍历二维数组，逐个绘制格子
-        for (int row = 0; row < 10; row++) 
-        {  // 遍历行
-            for (int col = 0; col < 15; col++) 
-            {  // 遍历列
-                // 计算当前格子在屏幕上的位置
-                SDL_Rect grid_rect = {
-                    col * 40+10,  // X坐标 = 列索引 * 格子大小
-                    row * 50+10,  // Y坐标 = 行索引 * 格子大小
-                    40,        // 宽度 = 格子大小
-                    50         // 高度 = 格子大小
-                };
-
-                // 根据数组元素值设置颜色
+                break;
+            case GameState::Game1:
+                window.drawGame1(myMap,myCharacter);
+                while (SDL_PollEvent(&event)) 
+                {
+                    if (event.type == SDL_QUIT) 
+                    {
+                        is_running = false; 
+                        cout << "收到窗口关闭指令，准备退出..." << std::endl;
+                    }
                 
-                switch (myMap.getPin(row,  col)) 
+                    if (event.type == SDL_KEYDOWN) 
+                    {   
+                        switch (event.key.keysym.sym) 
+                        {
+                            case SDLK_w:  // W键
+                                myCharacter.setPTs1('w');
+                                break;
+                            case SDLK_s:  // S键
+                                myCharacter.setPTs1('s');
+                                break;
+                            case SDLK_a:  // A键
+                                myCharacter.setPTs1('a');
+                                break;
+                            case SDLK_d:  // D键
+                                myCharacter.setPTs1('d');
+                                break;
+                            case SDLK_ESCAPE:  // ESC键
+                                cout << "ESC键被按下" << endl;
+                                break;
+                        }
+                    } 
+                    //返回主菜单
+                    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) 
+                    {
+                        if((event.button.x >= 620) && (event.button.x <= 620 + 150) && (event.button.y >= 480) && (event.button.y <= 480 + 80));
+                        {    
+                            currestate=GameState::Menu;
+                            myMap=mapRST;
+                            myCharacter.RST();
+                        }
+                    }
+                } 
+                //胜利结算
+                if(myMap.getPTs1(myCharacter.getpts_x(), myCharacter.getpts_y())==3)
                 {
-                    case 0:  // 空地 → 白色
-                        
-                        window.drawRect(col * 40+10, row * 50+10, 40, 50, {255,255,255,255});
-
-                        break;
-                    case 1:  // 墙壁 → 灰色
-                        window.drawRect(col * 40+10, row * 50+10, 40, 50, {100,100,100,255});
-
-                        break;
-                    case 2:  
-                        window.drawRect(col * 40+10, row * 50+10, 40, 50, {255,0,255,255});
-
-                        break;
+                    currestate=GameState::End;
+                    victory=true;
                 }
+                //失败结算
+                else if(myCharacter.getHP()<=0)
+                {
+                    currestate=GameState::End;
+                    victory=false;
+                }
+                break;
 
-             
-            }
-        }
-        a++;
 
-        if(a>=200)
-        {
-            cout<<"人物坐标为("<<myCharacter.getpts_x()<<","<<myCharacter.getpts_y()<<endl;
-            cout<<myMap.getPin(myCharacter.getpts_x(), myCharacter.getpts_y())<<endl;
-            a=0;
+            case GameState::Game2:
+                window.drawGame2(myMap,myCharacter);
+                while (SDL_PollEvent(&event)) 
+                {
+                    
+                    if (event.type == SDL_QUIT) 
+                    {
+                        is_running = false;  
+                        cout << "收到窗口关闭指令，准备退出..." << std::endl;
+                    }
+                
+                    if (event.type == SDL_KEYDOWN) 
+                    {   // 有按键被按下
+                        
+                        switch (event.key.keysym.sym) 
+                        {
+                            case SDLK_w:  // W键
+                                myCharacter.setPTs2('w');
+                                break;
+                            case SDLK_s:  // S键
+                                myCharacter.setPTs2('s');
+                                break;
+                            case SDLK_a:  // A键
+                                myCharacter.setPTs2('a');
+                                break;
+                            case SDLK_d:  // D键
+                                myCharacter.setPTs2('d');
+                                break;
+                            case SDLK_ESCAPE:  // ESC键
+                                cout << "ESC键被按下" << endl;
+                                break;
+                        }
+                    } 
+                    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) 
+                    {
+                
+
+                        if((event.button.x >= 620) && (event.button.x <= 620 + 150) && (event.button.y >= 480) && (event.button.y <= 480 + 80));
+                        {    
+                            currestate=GameState::Menu;
+                            myMap=mapRST;
+                            myCharacter.RST();
+                        }
+                    }
+                } 
+                if(myMap.getPTs2(myCharacter.getpts_x(), myCharacter.getpts_y())==3)
+                {
+                    currestate=GameState::End;
+                    victory=true;
+                }
+                else if(myCharacter.getHP()<=0)
+                {
+                    currestate=GameState::End;
+                    victory=false;
+                }
+                
+                break;
+            case GameState::End:
+                window.drawEnd(victory);
+                while(SDL_PollEvent(&event))
+                {
+                    
+                    if (event.type == SDL_QUIT) 
+                    {
+                        is_running = false;  
+                        cout << "收到窗口关闭指令，准备退出..." << endl;
+                    }
+                    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) 
+                    {
+                        //重置地图人物状态
+                        if((event.button.x >= 300) && (event.button.x <= 300 + 200) && (event.button.y >= 350) && (event.button.y <= 350 + 60))
+                        {    
+                            currestate=GameState::Menu;
+                            myMap=mapRST;
+                            myCharacter.RST();
+                        }
+                    }
+                }
+            break;
         }
-        myMap.MapUpdate(myCharacter.getpts_x(),myCharacter.getpts_y());
-        window.Windowupdate();
+        window.update();
         SDL_Delay(10);
     }
-    
-
-    cout << "资源已释放，程序正常退出！" << std::endl;
-
-
 	return 0;
 	
 }

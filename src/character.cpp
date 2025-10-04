@@ -2,25 +2,46 @@
 #include "../include/map.hpp"
 character::character()
 {
-	x = 9; y = 14;//这里实际上是10，15
-	//纵为x,横为y
+	x = 14; y = 14;
 }
-void character::setPosition(char key)
+void character::setPTs1(char key)
 {
 	map m;
 	switch (key)
 	{
 	case 'w':
-		if (x > 0 && m.getPin(x-1,y)!=1)x--;
+		if (x > 0 && m.getPTs1(x-1,y)!=1)x--;
 		break;
 	case 's':
-		if (x < 9 && m.getPin(x+1, y) != 1)x++;
+		if (x < 14 && m.getPTs1(x+1, y) != 1)x++;
 		break;
 	case 'a':
-		if (y > 0 && m.getPin(x, y-1) != 1)y--;
+		if (y > 0 && m.getPTs1(x, y-1) != 1)y--;
 		break;
 	case 'd':
-		if (y < 14 && m.getPin(x, y+1) != 1)y++;
+		if (y < 14 && m.getPTs1(x, y+1) != 1)y++;
+		break;
+
+	default:
+		break;
+	}
+}
+void character::setPTs2(char key)
+{
+	map m;
+	switch (key)
+	{
+	case 'w':
+		if (x > 0 && m.getPTs2(x-1,y)!=1)x--;
+		break;
+	case 's':
+		if (x < 14 && m.getPTs2(x+1, y) != 1)x++;
+		break;
+	case 'a':
+		if (y > 0 && m.getPTs2(x, y-1) != 1)y--;
+		break;
+	case 'd':
+		if (y < 14 && m.getPTs2(x, y+1) != 1)y++;
 		break;
 
 	default:
@@ -34,4 +55,26 @@ int character::getpts_x()
 int character::getpts_y()
 {
 	return y;
+}
+void character::setHP(int map_pin)
+{
+	map m;
+	if(danger_trag==false&&map_pin==2)
+	{
+		HP--;
+		danger_trag=true;
+	}
+	else if(map_pin!=2) danger_trag=false;
+}
+int character::getHP()
+{
+	return HP;
+}
+
+void character::RST()
+{
+	HP=3;
+	x=14;
+	y=14;
+
 }

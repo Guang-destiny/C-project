@@ -9,9 +9,10 @@ set(SDL2_TTF_LIBRARIES "/usr/lib/x86_64-linux-gnu/libSDL2_ttf.so")
 #添加文件目录
 include_directories(./include ./src  ${SDL2_INCLUDE_DIRS})
 
- #生成对应名称
+#生成对应名称
 add_executable( yestodo  ./src/main.cpp ./src/map.cpp ./src/character.cpp ./src/window.cpp)
 target_link_libraries(yestodo ${SDL2_LIBRARIES} ${SDL2_TTF_LIBRARIES})
+
 #cmake -B build
 #cmake --build build -j
 #./build/yestodo

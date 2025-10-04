@@ -300,4 +300,8 @@ CMakeFiles/yestodo.dir/src/window.cpp.o: \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_ttf.h \
- /usr/include/SDL2/SDL.h
+ /usr/include/SDL2/SDL.h \
+ /home/world/project/src/../include/../include/character.hpp \
+ /home/world/project/src/../include/../include/map.hpp \
+ /home/world/project/src/../include/character.hpp \
+ /home/world/project/src/../include/map.hpp

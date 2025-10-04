@@ -2,17 +2,29 @@
 
 
 
-
-void map::MapUpdate(char x,char y)
-{
-	
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			if (x == i && y == j) { pin[i][j]=2; }
-			else if(pin[i][j]!=1) pin[i][j]=0;
-		}
-	}
+int map::getPTs1(int x, int y) 
+{ 
+	return map1[x][y]; 
 }
-int map::getPin(int x, int y) { return pin[x][y]; }
+
+int map::getPTs2(int x, int y) 
+{ 
+	return map2[x][y]; 
+}
+
+int map::getrow()
+{
+	return row;
+}
+int map::getcol()
+{
+	return col;
+}
+void map::setPTs1(int x,int y,int value)
+{
+	map1[x][y]=value;
+}
+void map::setPTs2(int x,int y,int value)
+{
+	map2[x][y]=value;
+}
